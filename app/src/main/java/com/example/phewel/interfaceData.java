@@ -86,6 +86,34 @@ public class interfaceData {
                 fos.write(entire.get(i).getBytes(StandardCharsets.UTF_8));
                 fos.write('\n');
             }
+            fos.close();
+        }catch (IOException err){
+            err.printStackTrace();
+        }
+    }
+
+    void createNewFile(int startOdo){
+        BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.default_mileage), StandardCharsets.UTF_8));
+        String line;
+        List<String> entire = new ArrayList<>();
+        String startLine = String.valueOf(startOdo)+",,,,,,,";
+        try {
+            while ((line = br.readLine()) != null){
+                entire.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileOutputStream fos = context.openFileOutput("testing", Context.MODE_PRIVATE);
+            for (int i=0; i<entire.size(); i++){
+                fos.write(entire.get(i).getBytes(StandardCharsets.UTF_8));
+                fos.write('\n');
+            }
+            fos.write(startLine.getBytes(StandardCharsets.UTF_8));
+            fos.write('\n');
+            fos.close();
         }catch (IOException err){
             err.printStackTrace();
         }
@@ -126,19 +154,24 @@ public class interfaceData {
         return entire;
     }
 
-    List<Entry> processData() {
-        List<Entry> list = new ArrayList<>();
-        List<String> entire = readData();
+    String firstOdo(){
         String firstOdo = null;
-
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(context.openFileInput("testing"), StandardCharsets.UTF_8));
             reader.readLine();
             String line = reader.readLine();
             firstOdo = line.split(",")[0];
+            reader.close();
         } catch (IOException err){
             err.printStackTrace();
         }
+        return firstOdo;
+    }
+
+    List<Entry> processData() {
+        List<Entry> list = new ArrayList<>();
+        List<String> entire = readData();
+        String firstOdo = firstOdo();
 
         for (int i=0;i<entire.size();i++){
             String[] tokens = entire.get(i).split(",",-1);
@@ -168,7 +201,6 @@ public class interfaceData {
             if (file.exists()) {
                 file.delete();
             }
-            Log.d("LMAO", file.toString());
 
             try {
                 file.createNewFile();

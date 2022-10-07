@@ -1,6 +1,7 @@
 package com.example.phewel;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,14 @@ public class itemAdapter extends RecyclerView.Adapter<listViewHolder> {
 
         String toEconomy = String.valueOf(list.get(position).getEconomy());
         holder.fuelEff.setText(toEconomy);
+        if (list.get(position).getEffRating() == 1){
+            holder.fuelEff.setTextColor(Color.rgb(211,47,47));
+        } else if (list.get(position).getEffRating() == 2){
+            holder.fuelEff.setTextColor(Color.rgb(255,139,24));
+        } else if (list.get(position).getEffRating() == 3){
+            holder.fuelEff.setTextColor(Color.rgb(139,195,74));
+        }
+
         String toCostEff = String.valueOf(list.get(position).getCostEff());
         holder.costEff.setText(toCostEff);
         String toCost = String.valueOf(list.get(position).getCost());

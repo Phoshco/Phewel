@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:style="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="2dp">
+        android:padding="1dp">
 
         <TextView
             android:layout_width="0dp"
@@ -31,7 +32,7 @@
             android:layout_weight="1"
             android:id="@+id/avgconsume"
             android:hint="NA"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
             android:gravity="center"/>
 
         <TextView
@@ -48,16 +49,17 @@
             android:layout_weight="1"
             android:id="@+id/avgcost"
             android:hint="NA"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
             android:gravity="center"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/remove"
             android:text="Del"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
+            android:backgroundTint="@color/purple_700"
             android:gravity="center" />
 
     </LinearLayout>
@@ -86,8 +88,9 @@
             android:layout_weight="1"
             android:hint="Mileage"
             android:id="@+id/mileage"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
             android:inputType="numberDecimal"
+            android:imeOptions="actionNext"
             />
 
         <EditText
@@ -96,8 +99,9 @@
             android:layout_weight="1"
             android:hint="Fuel (3 dp)"
             android:id="@+id/fuel"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
             android:inputType="numberDecimal"
+            android:imeOptions="actionNext"
             />
 
         <EditText
@@ -106,16 +110,19 @@
             android:layout_weight="1"
             android:hint="Cost/litre"
             android:id="@+id/cost"
-            android:textColor="#376788"
+            android:textColor="@color/teal_200"
             android:inputType="numberDecimal"
+            android:imeOptions="actionDone"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter"
+            android:text="Enter"
             android:id="@+id/enter"
+            android:textColor="@color/teal_200"
+            android:backgroundTint="@color/purple_700"
             />
 
     </LinearLayout>

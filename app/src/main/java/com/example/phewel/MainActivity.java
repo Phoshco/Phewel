@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         enter = findViewById(R.id.enter);
@@ -45,13 +47,11 @@ public class MainActivity extends AppCompatActivity {
         remove = findViewById(R.id.remove);
 
         interfaceData id = new interfaceData(MainActivity.this);
-
-        //List<Entry> list = id.readData();
-        //id.createFile();
         List<Entry> list = id.processData();
 
         calcInfo calc = new calcInfo(list);
-        avgconsume.setText(calc.avgFuelEff());
+        String avgConsume = calc.avgFuelEff() + " km/L";
+        avgconsume.setText(avgConsume);
         avgcost.setText(calc.avgCostEff());
 
         adapter = new itemAdapter(list, getApplicationContext());
@@ -67,27 +67,40 @@ public class MainActivity extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String beforeOdo = list.get(0).getOdoBefore()+"";
+                String beforeOdo;
                 String toMileage = mileage.getText().toString();
                 String toFuel = fuel.getText().toString();
                 String toCost = cost.getText().toString();
                 String toType = "SPC 98";
-                if (TextUtils.isEmpty(toMileage)||TextUtils.isEmpty(toFuel)||TextUtils.isEmpty(toCost)){
-                    Toast.makeText(MainActivity.this,"Empty field(s)",Toast.LENGTH_SHORT).show();
-                } else if (toMileage.equals("69") || toFuel.equals("69") || toCost.equals("69")){
+                if (toMileage.equals("1") && TextUtils.isEmpty(toFuel) && TextUtils.isEmpty(toCost)){
+                    id.exportFile();
+                    Toast.makeText(MainActivity.this,"Exported!", Toast.LENGTH_SHORT).show();
+                } else if (toMileage.equals("69") && toFuel.equals("69") && toCost.equals("69")){
                     id.createFile();
                     Toast.makeText(MainActivity.this,"Reset!", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
-                } else if (toMileage.equals("1") || toFuel.equals("1") || toCost.equals("1")){
-                    id.exportFile();
-                    Toast.makeText(MainActivity.this,"Exported!", Toast.LENGTH_SHORT).show();
+                    overridePendingTransition(0,0);
+                } else if (!TextUtils.isEmpty(toMileage) && toFuel.equals("69") && toCost.equals("69")){
+                    id.createNewFile(Integer.parseInt(toMileage));
+                    Toast.makeText(MainActivity.this,"Reset!", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(getIntent());
+                    overridePendingTransition(0,0);
+                } else if (TextUtils.isEmpty(toMileage) || TextUtils.isEmpty(toFuel)||TextUtils.isEmpty(toCost)){
+                    Toast.makeText(MainActivity.this,"Empty field(s)",Toast.LENGTH_SHORT).show();
                 } else {
-                Entry newEntry = new Entry(beforeOdo, toMileage, toFuel, toCost, toType);
-                id.addData(newEntry);
-                Toast.makeText(MainActivity.this,"Added!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
+                    if (list.size()==0){
+                        beforeOdo = id.firstOdo();
+                    } else {
+                        beforeOdo = list.get(0).getOdoAfter()+"";
+                    }
+                    Entry newEntry = new Entry(beforeOdo, toMileage, toFuel, toCost, toType);
+                    id.addData(newEntry);
+                    Toast.makeText(MainActivity.this,"Added!", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(getIntent());
+                    overridePendingTransition(0,0);
                 }
             }
         });
@@ -99,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Deleted latest record!", Toast.LENGTH_SHORT).show();
                 finish();
                 startActivity(getIntent());
+                overridePendingTransition(0,0);
             }
         });
 

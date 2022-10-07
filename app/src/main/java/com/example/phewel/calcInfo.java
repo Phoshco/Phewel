@@ -10,14 +10,24 @@ public class calcInfo {
         this.list = list;
     }
 
-    String avgFuelEff(){
+    Double avgFuelEff(){
         double sum = 0;
         for (int i=0; i<list.size(); i++){
             sum += list.get(i).getEconomy();
         }
         sum = sum/list.size();
         sum = Math.round(sum * 1000d)/1000d;
-        return String.valueOf(sum) + " km/L";
+
+        for (int i=0; i<list.size(); i++){
+            Entry entry = list.get(i);
+            if (entry.getEconomy()<sum){
+                entry.setEffRating(1);
+            } else if (entry.getEconomy()==sum){
+                entry.setEffRating(2);
+            } else entry.setEffRating(3);
+        }
+
+        return sum;
     }
 
     String avgCostEff(){

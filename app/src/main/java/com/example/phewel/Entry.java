@@ -13,6 +13,7 @@ public class Entry {
     private String type;
     private double costEff;
     private String date;
+    private int effRating = 0; // 1 = below avg, 2 = avg, 3 = above avg
 
     public String getDate() {
         return date;
@@ -106,6 +107,14 @@ public class Entry {
         String output = getOdoAfter()+","+getInFuel()+","+getType()+","+getCost();
         output += ","+getDist()+","+getEconomy()+","+getCostEff()+","+getDate();
         return output;
+    }
+
+    public int getEffRating() {
+        return effRating;
+    }
+
+    public void setEffRating(int effRating) {
+        this.effRating = effRating;
     }
 
     Entry(String odoBefore, String odoAfter, String inFuel, String cost, String type){
