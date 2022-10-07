@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mileage;
     private EditText fuel;
     private EditText cost;
-    private Switch remove;
+    private Button remove;
 
     itemAdapter adapter;
 
@@ -89,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 startActivity(getIntent());
                 }
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                id.delData();
+                Toast.makeText(MainActivity.this,"Deleted latest record!", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(getIntent());
             }
         });
 

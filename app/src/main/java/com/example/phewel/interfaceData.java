@@ -3,16 +3,19 @@ package com.example.phewel;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,6 +47,21 @@ public class interfaceData {
             }
             fos.write(toEnter.getString().getBytes(StandardCharsets.UTF_8));
             fos.write('\n');
+            fos.close();
+        }catch (IOException err){
+            err.printStackTrace();
+        }
+    }
+
+    void delData(){
+        List<String> list = readFile();
+        try {
+            FileOutputStream fos = context.openFileOutput("testing", Context.MODE_PRIVATE);
+            for (int i=0; i<list.size()-1; i++){
+                String toWrite = list.get(i);
+                fos.write(toWrite.getBytes(StandardCharsets.UTF_8));
+                fos.write('\n');
+            }
             fos.close();
         }catch (IOException err){
             err.printStackTrace();
@@ -140,17 +158,17 @@ public class interfaceData {
     void exportFile(){
         List<String> list = readFile();
         String root = Environment.getExternalStorageDirectory().toString();
-        Log.d("LMAO", root);
         if (isStoragePermissionGranted()) { // check or ask permission
-            File myDir = new File(root, "/DCIM");
+            File myDir = new File(root + "/" + Environment.DIRECTORY_DOCUMENTS);
             if (!myDir.exists()) {
                 myDir.mkdirs();
             }
-            String fname = "output.csv";
-            File file = new File(myDir, fname);
+            String fname = "/phewel_output.csv";
+            File file = new File(myDir + fname);
             if (file.exists()) {
                 file.delete();
             }
+            Log.d("LMAO", file.toString());
 
             try {
                 file.createNewFile();

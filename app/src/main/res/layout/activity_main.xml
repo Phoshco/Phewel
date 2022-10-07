@@ -11,15 +11,6 @@
     tools:context=".MainActivity">
 
 
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/remove"
-        android:text="Delete entry (Tap on title)"
-        android:textColor="#376788"
-        android:padding="2dp"
-        android:gravity="center" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +50,15 @@
             android:hint="NA"
             android:textColor="#376788"
             android:gravity="center"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/remove"
+            android:text="Del"
+            android:textColor="#376788"
+            android:gravity="center" />
 
     </LinearLayout>
 
