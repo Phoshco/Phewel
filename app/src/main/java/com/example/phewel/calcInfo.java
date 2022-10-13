@@ -61,8 +61,6 @@ public class calcInfo {
         graphView.addSeries(graphAvg(noOfPoints));
         graphView.addSeries(graphSeries(noOfPoints));
 
-        graphView.getLegendRenderer().setVisible(false);
-
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graphView.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     xmlns:style="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingTop="15dp"
     android:paddingBottom="15dp"
     tools:context=".MainActivity">
 
