@@ -17,6 +17,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,14 +69,30 @@ public class interfaceData {
         }
     }
 
-    void createFile(){
+    void resetFromSavedFile(){
         BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.mileage), StandardCharsets.UTF_8));
         String line;
         List<String> entire = new ArrayList<>();
+        File file = null;
+
+        String root = Environment.getExternalStorageDirectory().toString();
+        if (isStoragePermissionGranted()) { // check or ask permission
+            File myDir = new File(root + "/" + Environment.DIRECTORY_DOCUMENTS);
+            if (!myDir.exists()) {
+                myDir.mkdirs();
+            }
+            String fname = "/phewel_output.csv";
+            file = new File(myDir + fname);
+        }
+
         try {
+            if (file.exists()) {
+                br = new BufferedReader(new FileReader(file.toString()));
+            }
             while ((line = br.readLine()) != null){
                 entire.add(line);
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,6 +118,7 @@ public class interfaceData {
             while ((line = br.readLine()) != null){
                 entire.add(line);
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,7 +146,7 @@ public class interfaceData {
             while ((line = reader.readLine()) != null) {
                 entire.add(line);
             }
-
+            reader.close();
         } catch (IOException err) {
             err.printStackTrace();
         }
@@ -147,7 +165,7 @@ public class interfaceData {
             while ((line = reader.readLine()) != null) {
                 entire.add(line);
             }
-
+            reader.close();
         } catch (IOException err) {
             err.printStackTrace();
         }

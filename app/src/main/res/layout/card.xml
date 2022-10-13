@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp">
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,11 +32,12 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Date: "
-                    android:textSize="16sp"
+                    android:layout_height="match_parent"
+                    android:text="Date: "
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"
                     android:layout_margin="3dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/offwhite"
                     android:maxLines="1"/>
 
                 <TextView
@@ -63,27 +64,33 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Mileage(km): "
-                        android:textSize="16sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Mileage(km): "
+                        android:gravity="center_vertical"
+                        android:textSize="12sp"
                         android:layout_margin="3dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/offwhite"
                         android:maxLines="1"/>
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Distance(km): "
-                        android:textSize="16sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Distance(km): "
+                        android:gravity="center_vertical"
+                        android:textSize="12sp"
                         android:layout_margin="3dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/offwhite"
                         android:maxLines="1"/>
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Fuel(L): "
-                        android:textSize="16sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Fuel(L): "
+                        android:gravity="center_vertical"
+                        android:textSize="12sp"
                         android:layout_margin="3dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/offwhite"
                         android:maxLines="1"/>
 
                 </LinearLayout>
@@ -138,35 +145,43 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Fuel Eff(km/L): "
-                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="Fuel Eff(km/L): "
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/offwhite"
                 android:maxLines="1"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cost Eff($/km): "
-                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="Cost Eff($/km): "
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/offwhite"
                 android:maxLines="1"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cost($): "
-                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="Cost($): "
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/offwhite"
                 android:maxLines="1"/>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Type: "
-                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="Type: "
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:layout_weight="1"
                 android:layout_margin="3dp"
-                android:textColor="@color/white"
+                android:textColor="@color/offwhite"
                 android:maxLines="1"/>
 
         </LinearLayout>

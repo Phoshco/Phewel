@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jjoe64.graphview.GraphView;
 
 import java.util.List;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText fuel;
     private EditText cost;
     private Button remove;
+    private GraphView graphView;
 
     itemAdapter adapter;
 
@@ -45,14 +46,17 @@ public class MainActivity extends AppCompatActivity {
         fuel = findViewById(R.id.fuel);
         cost = findViewById(R.id.cost);
         remove = findViewById(R.id.remove);
+        graphView = findViewById(R.id.graphview);
 
         interfaceData id = new interfaceData(MainActivity.this);
         List<Entry> list = id.processData();
 
         calcInfo calc = new calcInfo(list);
-        String avgConsume = calc.avgFuelEff() + " km/L";
+        Double davgConsume = calc.avgFuelEff();
+        String avgConsume = davgConsume + " km/L";
         avgconsume.setText(avgConsume);
         avgcost.setText(calc.avgCostEff());
+        calc.generateGraphs(graphView,list.size());
 
         adapter = new itemAdapter(list, getApplicationContext());
         recyclerView.setAdapter(adapter);
@@ -60,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layout);
         //GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0xFFB600FF,0xFF00DDFF});
         //drawable.setThickness(10);
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(recyclerView.getContext(), layout.getOrientation());
+        //DividerItemDecoration itemDecoration = new DividerItemDecoration(recyclerView.getContext(), layout.getOrientation());
         //itemDecoration.setDrawable(drawable);
-        recyclerView.addItemDecoration(itemDecoration);
+        //recyclerView.addItemDecoration(itemDecoration);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     id.exportFile();
                     Toast.makeText(MainActivity.this,"Exported!", Toast.LENGTH_SHORT).show();
                 } else if (toMileage.equals("69") && toFuel.equals("69") && toCost.equals("69")){
-                    id.createFile();
+                    id.resetFromSavedFile();
                     Toast.makeText(MainActivity.this,"Reset!", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
