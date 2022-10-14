@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PhewEL</string>
+    <string name="import_popup">To import, place the CSV file in the directory</string>
+    <string name="export_popup">CSV file will be exported to the directory</string>
 </resources>

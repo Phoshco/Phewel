@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.jjoe64.graphview.GraphView;
 
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Exported!", Toast.LENGTH_SHORT).show();
                 } else if (toMileage.equals("69") && toFuel.equals("69") && toCost.equals("69")){
                     id.resetFromSavedFile();
-                    Toast.makeText(MainActivity.this,"Reset!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Imported!", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
                     overridePendingTransition(0,0);
@@ -120,7 +121,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Reset:
+                return true;
+            case R.id.Import:
+                return true;
+            case R.id.Export:
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
