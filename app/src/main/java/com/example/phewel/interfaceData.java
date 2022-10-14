@@ -69,6 +69,20 @@ public class interfaceData {
         }
     }
 
+    boolean checkForSavedFile(){
+        File file = null;
+        String root = Environment.getExternalStorageDirectory().toString();
+        if (isStoragePermissionGranted()) { // check or ask permission
+            File myDir = new File(root + "/" + Environment.DIRECTORY_DOCUMENTS);
+            if (!myDir.exists()) {
+                myDir.mkdirs();
+            }
+            String fname = "/phewel_output.csv";
+            file = new File(myDir + fname);
+        }
+        return file.exists();
+    }
+
     void resetFromSavedFile(){
         BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.mileage), StandardCharsets.UTF_8));
         String line;

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.MenuItem;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.jjoe64.graphview.GraphView;
 
 import java.util.List;
@@ -29,15 +31,17 @@ public class MainActivity extends AppCompatActivity {
     private EditText cost;
     private Button remove;
     private GraphView graphView;
-
+    interfaceData id;
     itemAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        //this.getSupportActionBar().hide();
+        MaterialToolbar toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         enter = findViewById(R.id.enter);
         avgcost = findViewById(R.id.avgcost);
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         remove = findViewById(R.id.remove);
         graphView = findViewById(R.id.graphview);
 
-        interfaceData id = new interfaceData(MainActivity.this);
+        id = new interfaceData(MainActivity.this);
         List<Entry> list = id.processData();
 
         calcInfo calc = new calcInfo(list);
@@ -124,13 +128,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.top_bar, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.Reset:
+                popupsClass resetPop = new popupsClass();
+                resetPop.showReset(MainActivity.this, id);
                 return true;
             case R.id.Import:
+                popupsClass importPop = new popupsClass();
+                importPop.showImport(MainActivity.this,id);
                 return true;
             case R.id.Export:
+                popupsClass exportPop = new popupsClass();
+                exportPop.showExport(MainActivity.this,id);
+                return true;
+            case R.id.amogus:
+                Toast.makeText(MainActivity.this,"SUS", Toast.LENGTH_SHORT).show();
                 return true;
 
             default:

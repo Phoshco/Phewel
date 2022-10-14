@@ -16,6 +16,7 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/grey"
             android:orientation="vertical">
 
             <TextView
@@ -24,13 +25,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/export_popup"
+                android:textColor="@color/offwhite"
                 android:padding="10dp"/>
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/messageButton"
+            <Button
+                android:id="@+id/exportButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/offwhite"
+                android:backgroundTint="@color/purple_500"
                 android:text="Export" />
 
         </LinearLayout>
