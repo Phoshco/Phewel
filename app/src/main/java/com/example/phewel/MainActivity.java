@@ -81,23 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 String toFuel = fuel.getText().toString();
                 String toCost = cost.getText().toString();
                 String toType = "SPC 98";
-                if (toMileage.equals("1") && TextUtils.isEmpty(toFuel) && TextUtils.isEmpty(toCost)){
-                    id.exportFile();
-                    Toast.makeText(MainActivity.this,"Exported!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(toMileage) || TextUtils.isEmpty(toFuel)||TextUtils.isEmpty(toCost)){
+                    Toast.makeText(MainActivity.this,"Empty field(s)",Toast.LENGTH_SHORT).show();
                 } else if (toMileage.equals("69") && toFuel.equals("69") && toCost.equals("69")){
                     id.resetFromSavedFile();
                     Toast.makeText(MainActivity.this,"Imported!", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
                     overridePendingTransition(0,0);
-                } else if (!TextUtils.isEmpty(toMileage) && toFuel.equals("69") && toCost.equals("69")){
-                    id.createNewFile(Integer.parseInt(toMileage));
-                    Toast.makeText(MainActivity.this,"Reset!", Toast.LENGTH_SHORT).show();
-                    finish();
-                    startActivity(getIntent());
-                    overridePendingTransition(0,0);
-                } else if (TextUtils.isEmpty(toMileage) || TextUtils.isEmpty(toFuel)||TextUtils.isEmpty(toCost)){
-                    Toast.makeText(MainActivity.this,"Empty field(s)",Toast.LENGTH_SHORT).show();
                 } else {
                     if (list.size()==0){
                         beforeOdo = id.firstOdo();

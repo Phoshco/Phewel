@@ -66,36 +66,34 @@
                 android:padding="1dp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:textSize="12sp"
-                    android:text="Avg Fuel Efficiency:"
+                    android:text="Avg Fuel \nEfficiency: "
                     android:textColor="@color/offwhite"
                     android:gravity="center"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:id="@+id/avgconsume"
                     android:hint="NA"
                     android:textColor="@color/teal_200"
                     android:gravity="center"/>
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:textSize="12sp"
-                    android:text="Avg Cost Efficiency:"
+                    android:text="Avg Cost \nEfficiency: "
                     android:textColor="@color/offwhite"
                     android:gravity="center"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:id="@+id/avgcost"
                     android:hint="NA"
                     android:textColor="@color/teal_200"
@@ -152,7 +150,7 @@
             android:layout_weight="1"
             android:textSize="14sp"
             android:gravity="center"
-            android:hint="Fuel (3 dp)"
+            android:hint="Fuel"
             android:id="@+id/fuel"
             android:textColor="@color/teal_200"
             android:inputType="numberDecimal"
@@ -165,7 +163,7 @@
             android:layout_weight="1"
             android:textSize="14sp"
             android:gravity="center"
-            android:hint="Cost/litre"
+            android:hint="Cost"
             android:id="@+id/cost"
             android:textColor="@color/teal_200"
             android:inputType="numberDecimal"

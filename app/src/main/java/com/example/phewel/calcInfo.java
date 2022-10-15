@@ -51,7 +51,7 @@ public class calcInfo {
         }
         sum = sum/iter;
         sum = Math.round(sum * 1000d)/1000d;
-        return "$ " + String.valueOf(sum) + " /km";
+        return "$ " + String.valueOf(sum) + "/km ";
     }
 
     void generateGraphs(GraphView graphView, int noOfPoints){
