@@ -125,6 +125,7 @@ public class popupsClass {
             public void onClick(View v) {
                 id.exportFile();
                 Toast.makeText(context, "Exported!", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
             }
         });
 
