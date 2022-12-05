@@ -55,16 +55,15 @@ public class calcInfo {
     }
 
     void generateGraphs(GraphView graphView){
-//        if (noOfPoints > list.size()){
-//            noOfPoints = list.size();
-//        }
-        int noOfPoints = list.size();
-        graphView.addSeries(graphAvg(noOfPoints));
-        graphView.addSeries(graphSeries(noOfPoints));
+        int noOfPoints;
+        if (list.size() != 0){
+            noOfPoints = list.size();
+            graphView.addSeries(graphAvg(noOfPoints));
+            graphView.addSeries(graphSeries(noOfPoints));
+            graphView.getViewport().setMaxX(1.0 * noOfPoints-1);
+            graphView.getViewport().setXAxisBoundsManual(true);
+        }
 
-        graphView.getViewport().setMaxX(1.0 * noOfPoints-1);
-        graphView.getViewport().setXAxisBoundsManual(true);
-        //graphView.setBackgroundColor(Color.argb(50, 150, 100, 200));
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graphView.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);

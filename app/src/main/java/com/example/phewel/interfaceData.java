@@ -80,7 +80,11 @@ public class interfaceData {
             String fname = "/phewel_output.csv";
             file = new File(myDir + fname);
         }
-        return file.exists();
+        if (file == null){
+            return false;
+        } else {
+            return file.exists();
+        }
     }
 
     void resetFromSavedFile(){
