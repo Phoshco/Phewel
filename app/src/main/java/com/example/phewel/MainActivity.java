@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         String avgConsume = davgConsume + " km/L";
         avgconsume.setText(avgConsume);
         avgcost.setText(calc.avgCostEff());
-        calc.generateGraphs(graphView,list.size());
+        calc.generateGraphs(graphView);
 
         adapter = new itemAdapter(list, getApplicationContext());
         recyclerView.setAdapter(adapter);

@@ -54,13 +54,17 @@ public class calcInfo {
         return "$ " + String.valueOf(sum) + "/km ";
     }
 
-    void generateGraphs(GraphView graphView, int noOfPoints){
-        if (noOfPoints > list.size()){
-            noOfPoints = list.size();
-        }
+    void generateGraphs(GraphView graphView){
+//        if (noOfPoints > list.size()){
+//            noOfPoints = list.size();
+//        }
+        int noOfPoints = list.size();
         graphView.addSeries(graphAvg(noOfPoints));
         graphView.addSeries(graphSeries(noOfPoints));
 
+        graphView.getViewport().setMaxX(1.0 * noOfPoints-1);
+        graphView.getViewport().setXAxisBoundsManual(true);
+        //graphView.setBackgroundColor(Color.argb(50, 150, 100, 200));
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graphView.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);
@@ -85,8 +89,9 @@ public class calcInfo {
 
     private LineGraphSeries<DataPoint> graphAvg(int noOfPoints){
         List<DataPoint> dpArrList = new ArrayList<>();
-        dpArrList.add(new DataPoint(0,avgFuelEff()));
-        dpArrList.add(new DataPoint(noOfPoints,avgFuelEff()));
+        Double forAFE = avgFuelEff();
+        dpArrList.add(new DataPoint(0,forAFE));
+        dpArrList.add(new DataPoint(noOfPoints-1,forAFE));
         DataPoint[] dpArr = new DataPoint[dpArrList.size()];
         dpArrList.toArray(dpArr);
         LineGraphSeries<DataPoint> out = new LineGraphSeries<DataPoint>(dpArr);
