@@ -108,11 +108,15 @@ public class MainActivity extends AppCompatActivity {
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                id.delData();
-                Toast.makeText(MainActivity.this,"Deleted latest record!", Toast.LENGTH_SHORT).show();
-                finish();
-                startActivity(getIntent());
-                overridePendingTransition(0,0);
+                if (list.size() == 0){
+                    Toast.makeText(MainActivity.this,"No records to delete", Toast.LENGTH_SHORT).show();
+                } else{
+                    id.delData();
+                    Toast.makeText(MainActivity.this,"Deleted latest record!", Toast.LENGTH_SHORT).show();
+                    finish();
+                    startActivity(getIntent());
+                    overridePendingTransition(0,0);
+                }
             }
         });
 
