@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.jjoe64.graphview.GraphView;
+import androidx.core.splashscreen.SplashScreen;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
         setContentView(R.layout.activity_main);
 
         //this.getSupportActionBar().hide();
