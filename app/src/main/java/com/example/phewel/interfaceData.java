@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -105,7 +106,9 @@ public class interfaceData {
 
         try {
             if (file.exists()) {
-                br = new BufferedReader(new FileReader(file.toString()));
+                // br = new BufferedReader(new FileReader(file.toString()));
+                FileInputStream fin = new FileInputStream(file);
+                br = new BufferedReader(new InputStreamReader(fin, StandardCharsets.UTF_8));
             }
             while ((line = br.readLine()) != null){
                 entire.add(line);
@@ -255,19 +258,28 @@ public class interfaceData {
 
     public boolean isStoragePermissionGranted() {
         String TAG = "Storage Permission";
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (context.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Permission is granted");
+                    == PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission is granted 1");
+                return true;
+            } else if (!Environment.isExternalStorageManager()){
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                context.startActivity(intent);
+                Log.v(TAG, "Permission is granted 2");
+                return true;
+            } else if (Environment.isExternalStorageManager()) {
+                Log.v(TAG, "Permission is granted 4");
                 return true;
             } else {
                 Log.v(TAG, "Permission is revoked");
                 ActivityCompat.requestPermissions( (Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                ActivityCompat.requestPermissions( (Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 return false;
             }
         }
         else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG,"Permission is granted");
+            Log.v(TAG,"Permission is granted 3");
             return true;
         }
     }
