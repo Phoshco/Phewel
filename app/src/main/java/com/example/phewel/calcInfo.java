@@ -22,10 +22,15 @@ public class calcInfo {
 
     Double avgFuelEff(){
         double sum = 0;
+        int totalD = 0;
+        double totalF = 0;
         for (int i=0; i<list.size(); i++){
-            sum += list.get(i).getEconomy();
+            // sum += list.get(i).getEconomy();
+            totalD += list.get(i).getDist();
+            totalF += list.get(i).getInFuel();
         }
-        sum = sum/list.size();
+        sum = totalD/totalF;
+        //sum = sum/list.size();
         sum = Math.round(sum * 1000d)/1000d;
 
         for (int i=0; i<list.size(); i++){
