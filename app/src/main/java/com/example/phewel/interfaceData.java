@@ -233,6 +233,7 @@ public class interfaceData {
         String root = Environment.getExternalStorageDirectory().toString();
         if (isStoragePermissionGranted()) { // check or ask permission
             File myDir = new File(root + "/" + Environment.DIRECTORY_DOCUMENTS);
+            Log.v("Export", myDir.toString());
             if (!myDir.exists()) {
                 myDir.mkdirs();
             }
