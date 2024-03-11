@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.app.ActivityCompat;
@@ -250,6 +251,7 @@ public class interfaceData {
                     fos.write('\n');
                 }
                 fos.close();
+                Toast.makeText(context.getApplicationContext(), myDir+fname, Toast.LENGTH_SHORT).show();
             }catch (IOException err){
                 err.printStackTrace();
             }

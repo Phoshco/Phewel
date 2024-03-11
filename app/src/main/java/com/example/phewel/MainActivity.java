@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         beforeOdo = list.get(0).getOdoAfter()+"";
                     }
+                    toMileage = Float.parseFloat(beforeOdo) + Float.parseFloat(toMileage) + "";
                     Entry newEntry = new Entry(beforeOdo, toMileage, toFuel, toCost, toType);
                     id.addData(newEntry);
                     Toast.makeText(MainActivity.this,"Added!", Toast.LENGTH_SHORT).show();

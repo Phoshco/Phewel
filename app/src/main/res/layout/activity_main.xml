@@ -137,7 +137,7 @@
             android:layout_weight="1"
             android:textSize="14sp"
             android:gravity="center"
-            android:hint="Mileage"
+            android:hint="Distance"
             android:id="@+id/mileage"
             android:textColor="@color/teal_200"
             android:inputType="numberDecimal"

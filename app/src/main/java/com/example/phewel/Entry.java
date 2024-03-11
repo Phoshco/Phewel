@@ -4,11 +4,11 @@ import java.util.Calendar;
 
 public class Entry {
 
-    private int odoBefore;
-    private int odoAfter;
+    private float odoBefore;
+    private float odoAfter;
     private double inFuel;
     private double economy;
-    private int dist;
+    private float dist;
     private String cost;
     private String type;
     private double costEff;
@@ -44,19 +44,19 @@ public class Entry {
         }
     }
 
-    public int getOdoBefore() {
+    public float getOdoBefore() {
         return odoBefore;
     }
 
-    public void setOdoBefore(int odoBefore) {
+    public void setOdoBefore(float odoBefore) {
         this.odoBefore = odoBefore;
     }
 
-    public int getOdoAfter() {
+    public float getOdoAfter() {
         return odoAfter;
     }
 
-    public void setOdoAfter(int odoAfter) {
+    public void setOdoAfter(float odoAfter) {
         this.odoAfter = odoAfter;
     }
 
@@ -79,7 +79,7 @@ public class Entry {
 
     public void setEconomy( String economy ) { this.economy = Double.parseDouble(economy); }
 
-    public int getDist() {
+    public float getDist() {
         return dist;
     }
 
@@ -87,7 +87,7 @@ public class Entry {
         this.dist = this.odoAfter-this.odoBefore;
     }
 
-    public void setDist( String dist ) { this.dist = Integer.parseInt(dist); }
+    public void setDist( String dist ) { this.dist = Float.parseFloat(dist); }
 
     public String getCost() {
         return cost;
@@ -118,8 +118,8 @@ public class Entry {
     }
 
     Entry(String odoBefore, String odoAfter, String inFuel, String cost, String type){
-        setOdoBefore(Integer.parseInt(odoBefore));
-        setOdoAfter(Integer.parseInt(odoAfter));
+        setOdoBefore(Float.parseFloat(odoBefore));
+        setOdoAfter(Float.parseFloat(odoAfter));
         setInFuel(Double.parseDouble(inFuel));
         calcDist();
         setCost(cost);
@@ -130,8 +130,8 @@ public class Entry {
     }
 
     Entry(String odoBefore, String odoAfter, String inFuel, String type, String cost, String dist, String economy, String costEff, String date) {
-        setOdoBefore(Integer.parseInt(odoBefore));
-        setOdoAfter(Integer.parseInt(odoAfter));
+        setOdoBefore(Float.parseFloat(odoBefore));
+        setOdoAfter(Float.parseFloat(odoAfter));
         setInFuel(Double.parseDouble(inFuel));
         setType(type);
         setCost(cost);
