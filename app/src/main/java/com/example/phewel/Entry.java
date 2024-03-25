@@ -4,11 +4,11 @@ import java.util.Calendar;
 
 public class Entry {
 
-    private float odoBefore;
-    private float odoAfter;
+    private double odoBefore;
+    private double odoAfter;
     private double inFuel;
     private double economy;
-    private float dist;
+    private double dist;
     private String cost;
     private String type;
     private double costEff;
@@ -44,19 +44,19 @@ public class Entry {
         }
     }
 
-    public float getOdoBefore() {
+    public double getOdoBefore() {
         return odoBefore;
     }
 
-    public void setOdoBefore(float odoBefore) {
+    public void setOdoBefore(double odoBefore) {
         this.odoBefore = odoBefore;
     }
 
-    public float getOdoAfter() {
+    public double getOdoAfter() {
         return odoAfter;
     }
 
-    public void setOdoAfter(float odoAfter) {
+    public void setOdoAfter(double odoAfter) {
         this.odoAfter = odoAfter;
     }
 
@@ -79,7 +79,7 @@ public class Entry {
 
     public void setEconomy( String economy ) { this.economy = Double.parseDouble(economy); }
 
-    public float getDist() {
+    public double getDist() {
         return dist;
     }
 
@@ -87,7 +87,7 @@ public class Entry {
         this.dist = this.odoAfter-this.odoBefore;
     }
 
-    public void setDist( String dist ) { this.dist = Float.parseFloat(dist); }
+    public void setDist( String dist ) { this.dist = Double.parseDouble(dist); }
 
     public String getCost() {
         return cost;
@@ -118,8 +118,8 @@ public class Entry {
     }
 
     Entry(String odoBefore, String odoAfter, String inFuel, String cost, String type){
-        setOdoBefore(Float.parseFloat(odoBefore));
-        setOdoAfter(Float.parseFloat(odoAfter));
+        setOdoBefore(Double.parseDouble(odoBefore));
+        setOdoAfter(Double.parseDouble(odoAfter));
         setInFuel(Double.parseDouble(inFuel));
         calcDist();
         setCost(cost);
@@ -130,8 +130,8 @@ public class Entry {
     }
 
     Entry(String odoBefore, String odoAfter, String inFuel, String type, String cost, String dist, String economy, String costEff, String date) {
-        setOdoBefore(Float.parseFloat(odoBefore));
-        setOdoAfter(Float.parseFloat(odoAfter));
+        setOdoBefore(Double.parseDouble(odoBefore));
+        setOdoAfter(Double.parseDouble(odoAfter));
         setInFuel(Double.parseDouble(inFuel));
         setType(type);
         setCost(cost);
