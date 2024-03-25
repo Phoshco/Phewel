@@ -94,12 +94,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(getIntent());
                     overridePendingTransition(0,0);
                 } else {
-                    if (list.size()==0){
+                    if (list.isEmpty()){
                         beforeOdo = id.firstOdo();
                     } else {
                         beforeOdo = list.get(0).getOdoAfter()+"";
                     }
-                    toMileage = Double.parseDouble(beforeOdo) + Double.parseDouble(toMileage) + "";
+                    beforeOdo = "" + (double) Math.round(Double.parseDouble(toMileage) * 10d) / 10d;
+                    toMileage = Double.parseDouble(beforeOdo) + ((double) Math.round(Double.parseDouble(toMileage) * 10d) / 10d) + "";
                     Entry newEntry = new Entry(beforeOdo, toMileage, toFuel, toCost, toType);
                     id.addData(newEntry);
                     Toast.makeText(MainActivity.this,"Added!", Toast.LENGTH_SHORT).show();

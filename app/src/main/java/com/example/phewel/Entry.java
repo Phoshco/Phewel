@@ -119,7 +119,7 @@ public class Entry {
 
     Entry(String odoBefore, String odoAfter, String inFuel, String cost, String type){
         setOdoBefore(Double.parseDouble(odoBefore));
-        setOdoAfter(Double.parseDouble(odoAfter));
+        setOdoAfter((double) Math.round(Double.parseDouble(odoAfter) * 10d) / 10d);
         setInFuel(Double.parseDouble(inFuel));
         calcDist();
         setCost(cost);
@@ -131,7 +131,7 @@ public class Entry {
 
     Entry(String odoBefore, String odoAfter, String inFuel, String type, String cost, String dist, String economy, String costEff, String date) {
         setOdoBefore(Double.parseDouble(odoBefore));
-        setOdoAfter(Double.parseDouble(odoAfter));
+        setOdoAfter((double) Math.round(Double.parseDouble(odoAfter) * 10d) / 10d);
         setInFuel(Double.parseDouble(inFuel));
         setType(type);
         setCost(cost);
